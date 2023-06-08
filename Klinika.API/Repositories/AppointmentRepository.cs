@@ -12,7 +12,7 @@ namespace Klinika.API.Repositories
         public void UpdateAppointment(Appointment appointment) => Update(appointment);
         public void DeleteAppointment(Appointment appointment) => Delete(appointment);
         public async Task<IEnumerable<Appointment>> GetAllAppointments() => await SelectAll().ToListAsync();
-        public async Task<Appointment> GetAppointmentById(int appointmentId) => await SelectByCondition(appointment => appointment.appointmentID == appointmentId).FirstOrDefaultAsync();
+        public async Task<Appointment> GetAppointmentById(int appointmentId) => await SelectByCondition(appointment => appointment.AppointmentID == appointmentId).FirstOrDefaultAsync();
 
 
     }

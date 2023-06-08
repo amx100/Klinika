@@ -4,9 +4,9 @@ namespace Klinika.API.Data.Dto.Appointment
 {
 	public class AppointmentUpdateDto
 	{
-		public int appointmentID { get; set; }
+		public int AppointmentID { get; set; }
 		public DateTime appointed_time { get; set; }
-		public int patientID { get; set; }
-		public int doctorID { get; set; }
+		public int PatientID { get; set; }
+		public int DoctorID { get; set; }
 	}
 }

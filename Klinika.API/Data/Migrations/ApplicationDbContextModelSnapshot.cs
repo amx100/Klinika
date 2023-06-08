@@ -21,31 +21,31 @@ namespace Klinika.API.Data.Migrations
 
             modelBuilder.Entity("Klinika.API.Models.Appointment", b =>
                 {
-                    b.Property<int>("appointmentID")
+                    b.Property<int>("AppointmentID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     b.Property<DateTime>("appointed_time")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int>("doctorID")
+                    b.Property<int>("DoctorID")
                         .HasColumnType("int");
 
-                    b.Property<int>("patientID")
+                    b.Property<int>("PatientID")
                         .HasColumnType("int");
 
-                    b.HasKey("appointmentID");
+                    b.HasKey("AppointmentID");
 
-                    b.HasIndex("doctorID");
+                    b.HasIndex("DoctorID");
 
-                    b.HasIndex("patientID");
+                    b.HasIndex("PatientID");
 
                     b.ToTable("Appointments");
                 });
 
             modelBuilder.Entity("Klinika.API.Models.Department", b =>
                 {
-                    b.Property<int>("departmentID")
+                    b.Property<int>("DepartmentID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -57,14 +57,14 @@ namespace Klinika.API.Data.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.HasKey("departmentID");
+                    b.HasKey("DepartmentID");
 
                     b.ToTable("Departments");
                 });
 
             modelBuilder.Entity("Klinika.API.Models.Diagnose", b =>
                 {
-                    b.Property<int>("diagnoseID")
+                    b.Property<int>("DiagnoseID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -76,18 +76,18 @@ namespace Klinika.API.Data.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.HasKey("diagnoseID");
+                    b.HasKey("DiagnoseID");
 
                     b.ToTable("Diagnose");
                 });
 
             modelBuilder.Entity("Klinika.API.Models.Doctor", b =>
                 {
-                    b.Property<int>("doctorID")
+                    b.Property<int>("DoctorID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("departmentID")
+                    b.Property<int>("DepartmentID")
                         .HasColumnType("int");
 
                     b.Property<string>("lastname")
@@ -102,26 +102,26 @@ namespace Klinika.API.Data.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.HasKey("doctorID");
+                    b.HasKey("DoctorID");
 
-                    b.HasIndex("departmentID");
+                    b.HasIndex("DepartmentID");
 
                     b.ToTable("Doctors");
                 });
 
             modelBuilder.Entity("Klinika.API.Models.Patient", b =>
                 {
-                    b.Property<int>("patientID")
+                    b.Property<int>("PatientID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     b.Property<DateTime>("date_of_birth")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int>("departmentID")
+                    b.Property<int>("DepartmentID")
                         .HasColumnType("int");
 
-                    b.Property<int>("diagnoseID")
+                    b.Property<int>("DiagnoseID")
                         .HasColumnType("int");
 
                     b.Property<string>("lastname")
@@ -135,11 +135,11 @@ namespace Klinika.API.Data.Migrations
                     b.Property<int>("phone")
                         .HasColumnType("int");
 
-                    b.HasKey("patientID");
+                    b.HasKey("PatientID");
 
-                    b.HasIndex("departmentID");
+                    b.HasIndex("DepartmentID");
 
-                    b.HasIndex("diagnoseID");
+                    b.HasIndex("DiagnoseID");
 
                     b.ToTable("Patient");
                 });
@@ -148,13 +148,13 @@ namespace Klinika.API.Data.Migrations
                 {
                     b.HasOne("Klinika.API.Models.Doctor", "Doctor")
                         .WithMany()
-                        .HasForeignKey("doctorID")
+                        .HasForeignKey("DoctorID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Klinika.API.Models.Patient", "Patient")
                         .WithMany()
-                        .HasForeignKey("patientID")
+                        .HasForeignKey("PatientID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -167,7 +167,7 @@ namespace Klinika.API.Data.Migrations
                 {
                     b.HasOne("Klinika.API.Models.Department", "Department")
                         .WithMany()
-                        .HasForeignKey("departmentID")
+                        .HasForeignKey("DepartmentID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -178,13 +178,13 @@ namespace Klinika.API.Data.Migrations
                 {
                     b.HasOne("Klinika.API.Models.Department", "Department")
                         .WithMany()
-                        .HasForeignKey("departmentID")
+                        .HasForeignKey("DepartmentID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Klinika.API.Models.Diagnose", "Diagnose")
                         .WithMany()
-                        .HasForeignKey("diagnoseID")
+                        .HasForeignKey("DiagnoseID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

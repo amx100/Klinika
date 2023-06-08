@@ -13,7 +13,7 @@ namespace Application.Repositories
         public void CreateDoctor(Doctor doctor) => Create(doctor);
         public void UpdateDoctor(Doctor doctor) => Update(doctor);
         public void DeleteDoctor(Doctor doctor) => Delete(doctor);
-        public async Task<Doctor> GetDoctorById(int doctorId) => await SelectByCondition(doctor => doctor.doctorID == doctorId).FirstOrDefaultAsync();
+        public async Task<Doctor> GetDoctorById(int doctorId) => await SelectByCondition(doctor => doctor.DoctorID == doctorId).FirstOrDefaultAsync();
         public async Task<IEnumerable<Doctor>> GetAllDoctors() => await SelectAll().ToListAsync();
     }
 }
