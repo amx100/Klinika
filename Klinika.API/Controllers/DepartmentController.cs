@@ -46,7 +46,7 @@ namespace Klinika.API.Controllers
 		[HttpPut("{departmentId}")]
 		public async Task<IActionResult> UpdateDepartment(DepartmentUpdateDto departmentDto, int departmentId)
 		{
-			if (!departmentId.Equals(departmentDto.departmentID))
+			if (!departmentId.Equals(departmentDto.DepartmentID))
 				return BadRequest("Invalid ID");
 			var response = await _serviceManager.DepartmentService.UpdateDepartment(departmentId, departmentDto);
 			if (response.IsSuccess)

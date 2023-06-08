@@ -13,7 +13,7 @@ namespace Klinika.API.Repositories
         public void UpdateDepartment(Department department) => Update(department);
         public void DeleteDepartment(Department department) => Delete(department);
         public async Task<IEnumerable<Department>> GetAllDepartments() => await SelectAll().ToListAsync();
-        public async Task<Department> GetDepartmentById(int departmentId) => await SelectByCondition(department => department.departmentID == departmentId).FirstOrDefaultAsync();
+        public async Task<Department> GetDepartmentById(int departmentId) => await SelectByCondition(department => department.DepartmentID == departmentId).FirstOrDefaultAsync();
 
        
     }

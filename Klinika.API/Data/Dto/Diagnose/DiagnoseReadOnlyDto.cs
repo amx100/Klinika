@@ -6,7 +6,7 @@ namespace Klinika.API.Data.Dto.Diagnose;
 
 public class DiagnoseReadOnlyDto
 {
-	public int diagnoseID { get; set; }
-	public int appointmentID { get; set; }
+	public int DiagnoseID { get; set; }
+	public int AppointmentID { get; set; }
 	public AppointmentReadOnlyDto Appointment { get; set; }
 }

@@ -7,9 +7,9 @@ namespace Klinika.API.Data.Dto.Appointment
 		[Required]
 		public DateTime appointed_time { get; set; }
 		[Required]
-		public int patientID { get; set; }
+		public int PatientID { get; set; }
 		[Required]
-		public int doctorID { get; set; }
+		public int DoctorID { get; set; }
 
 	}
 }
