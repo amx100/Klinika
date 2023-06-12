@@ -8,9 +8,11 @@ namespace Klinika.API.Data.Dto.Patient
 		public string name { get; set; }
 		[Required]
 		public string lastname { get; set; }
-		[Required]
-		public int phone { get; set; }
+	
 		[Required]
 		public DateTime date_of_birth { get; set; }
+		[Required]
+		public int departmentID { get; set; }
+		
 	}
 }

@@ -6,7 +6,8 @@ namespace Klinika.API.Data.Dto.Diagnose
 	{
 		[Required]
 		public string name { get; set; }
-		[Required]
 		public string description { get; set; }
+		public int patientID { get; set; }
+
 	}
 }
