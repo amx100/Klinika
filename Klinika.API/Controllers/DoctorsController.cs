@@ -31,6 +31,15 @@ namespace Klinika.API.Controllers
 			return NotFound("Doctor not found.");
 		}
 
+		[HttpGet("getAllPatients/{doctorId}")]
+		public async Task<IActionResult> GetPatientsByDoctorId(int doctorId)
+		{
+			var response = await _serviceManager.AppointmentService.GetPatientsByDoctorId(doctorId);
+			if (response is not null)
+				return Ok(response);
+			return NotFound("Doctor not found.");
+		}
+
 		[HttpPost]
 		public async Task<IActionResult> CreateDoctor(DoctorCreateDto doctorDto)
 		{
@@ -46,7 +55,7 @@ namespace Klinika.API.Controllers
 		[HttpPut("{doctorId}")]
 		public async Task<IActionResult> UpdateDoctor(DoctorUpdateDto doctorDto, int doctorId)
 		{
-			if (!doctorId.Equals(doctorDto.DoctorID))
+			if (!doctorId.Equals(doctorDto.doctorID))
 				return BadRequest("Invalid ID");
 			var response = await _serviceManager.DoctorService.UpdateDoctor(doctorId, doctorDto);
 			if (response.IsSuccess)
