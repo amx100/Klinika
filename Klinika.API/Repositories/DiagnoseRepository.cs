@@ -11,8 +11,9 @@ namespace Klinika.API.Repositories
         public void CreateDiagnose(Diagnose diagnose) => Create(diagnose);
         public void UpdateDiagnose(Diagnose diagnose) => Update(diagnose);
         public void DeleteDiagnose(Diagnose diagnose) => Delete(diagnose);
-        public async Task<Diagnose> GetDiagnoseById(int diagnoseId) => await SelectByCondition(diagnose => diagnose.DiagnoseID == diagnoseId).FirstOrDefaultAsync();
-        public async Task<IEnumerable<Diagnose>> GetAllDiagnoses() => await SelectAll().ToListAsync();
+		public async Task<IEnumerable<Diagnose>> GetAllDiagnoses() => await SelectAll().Include(pat => pat.Patient).ToListAsync();
+		public async Task<Diagnose> GetDiagnoseById(int diagnoseId) => await SelectByCondition(diagnose => diagnose.diagnoseID == diagnoseId).FirstOrDefaultAsync();
+        
 
        
     }

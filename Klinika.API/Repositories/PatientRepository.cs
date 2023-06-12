@@ -11,7 +11,24 @@ namespace Klinika.API.Repositories
         public void CreatePatient(Patient patient) => Create(patient);
         public void UpdatePatient(Patient patient) => Update(patient);
         public void DeletePatient(Patient patient) => Delete(patient);
-        public async Task<Patient> GetPatientById(int patientId) => await SelectByCondition(patient => patient.PatientID == patientId).FirstOrDefaultAsync();
-        public async Task<IEnumerable<Patient>> GetAllPatients() => await SelectAll().ToListAsync();
-    }
+		public async Task<IEnumerable<Patient>> GetAllPatients()
+		{
+			return await SelectAll()
+				.Include(p => p.Department)
+				.Include(p => p.Appointments)
+				.ThenInclude(a => a.Doctor)
+				.ToListAsync();
+		}
+
+		public async Task<Patient> GetPatientById(int patientId)
+		{
+			return await SelectByCondition(p => p.patientID == patientId)
+				.Include(p => p.Department)
+				.Include(p => p.Appointments)
+				.ThenInclude(a => a.Doctor)
+				.FirstOrDefaultAsync();
+		}
+
+
+	}
 }
