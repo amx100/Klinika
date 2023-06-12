@@ -5,14 +5,20 @@ namespace Klinika.API.Models
 	public class Appointment
 	{
 		[Key]
-		public int AppointmentID { get; set; }
+		public int appointmentID { get; set; }
+		public int patientID { get; set; }
+		public Patient Patient { get; set; }
+		public int doctorID { get; set; }
+		public Doctor Doctor { get; set; }
+		public DateTime appointmentDate { get; set; }
+		public AppointmentStatus status { get; set; } 
+		
+	}
 
-		public int PatientID { get; set; }
-		public required Patient Patient { get; set; }
-
-		public required Doctor Doctor { get; set; } 
-		public int DoctorID { get; set; }
-
-		public DateTime appointed_time { get; set; }
+	public enum AppointmentStatus
+	{
+		Pending,
+		Cancelled,
+		Completed
 	}
 }
