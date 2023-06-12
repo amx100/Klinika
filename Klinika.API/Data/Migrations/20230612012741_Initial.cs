@@ -19,33 +19,14 @@ namespace Klinika.API.Data.Migrations
                 name: "Departments",
                 columns: table => new
                 {
-                    DepartmentID = table.Column<int>(type: "int", nullable: false)
+                    departmentID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     name = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    description = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Departments", x => x.DepartmentID);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "Diagnose",
-                columns: table => new
-                {
-                    DiagnoseID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    name = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    description = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Diagnose", x => x.DiagnoseID);
+                    table.PrimaryKey("PK_Departments", x => x.departmentID);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -53,7 +34,7 @@ namespace Klinika.API.Data.Migrations
                 name: "Doctors",
                 columns: table => new
                 {
-                    DoctorID = table.Column<int>(type: "int", nullable: false)
+                    doctorID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     name = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -61,16 +42,16 @@ namespace Klinika.API.Data.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     specialization = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    DepartmentID = table.Column<int>(type: "int", nullable: false)
+                    departmentID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Doctors", x => x.DoctorID);
+                    table.PrimaryKey("PK_Doctors", x => x.doctorID);
                     table.ForeignKey(
                         name: "FK_Doctors_Departments_departmentID",
-                        column: x => x.DepartmentID,
+                        column: x => x.departmentID,
                         principalTable: "Departments",
-                        principalColumn: "DepartmentID",
+                        principalColumn: "departmentID",
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
@@ -79,31 +60,23 @@ namespace Klinika.API.Data.Migrations
                 name: "Patient",
                 columns: table => new
                 {
-                    PatientID = table.Column<int>(type: "int", nullable: false)
+                    patientID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     name = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     lastname = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    phone = table.Column<int>(type: "int", nullable: false),
                     date_of_birth = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    DepartmentID = table.Column<int>(type: "int", nullable: false),
-                    DiagnoseID = table.Column<int>(type: "int", nullable: false)
+                    departmentID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Patient", x => x.PatientID);
+                    table.PrimaryKey("PK_Patient", x => x.patientID);
                     table.ForeignKey(
                         name: "FK_Patient_Departments_departmentID",
-                        column: x => x.DepartmentID,
+                        column: x => x.departmentID,
                         principalTable: "Departments",
-                        principalColumn: "DepartmentID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Patient_Diagnose_diagnoseID",
-                        column: x => x.DiagnoseID,
-                        principalTable: "Diagnose",
-                        principalColumn: "DiagnoseID",
+                        principalColumn: "departmentID",
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
@@ -112,26 +85,50 @@ namespace Klinika.API.Data.Migrations
                 name: "Appointments",
                 columns: table => new
                 {
-                    AppointmentID = table.Column<int>(type: "int", nullable: false)
+                    appointmentID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    PatientID = table.Column<int>(type: "int", nullable: false),
-                    DoctorID = table.Column<int>(type: "int", nullable: false),
-                    appointed_time = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                    patientID = table.Column<int>(type: "int", nullable: false),
+                    doctorID = table.Column<int>(type: "int", nullable: false),
+                    appointmentDate = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Appointments", x => x.AppointmentID);
+                    table.PrimaryKey("PK_Appointments", x => x.appointmentID);
                     table.ForeignKey(
                         name: "FK_Appointments_Doctors_doctorID",
-                        column: x => x.DoctorID,
+                        column: x => x.doctorID,
                         principalTable: "Doctors",
-                        principalColumn: "DoctorID",
+                        principalColumn: "doctorID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Appointments_Patient_patientID",
-                        column: x => x.PatientID,
+                        column: x => x.patientID,
                         principalTable: "Patient",
-                        principalColumn: "PatientID",
+                        principalColumn: "patientID",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Diagnose",
+                columns: table => new
+                {
+                    diagnoseID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    name = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    description = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    patientID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Diagnose", x => x.diagnoseID);
+                    table.ForeignKey(
+                        name: "FK_Diagnose_Patient_patientID",
+                        column: x => x.patientID,
+                        principalTable: "Patient",
+                        principalColumn: "patientID",
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
@@ -139,27 +136,27 @@ namespace Klinika.API.Data.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Appointments_doctorID",
                 table: "Appointments",
-                column: "DoctorID");
+                column: "doctorID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Appointments_patientID",
                 table: "Appointments",
-                column: "PatientID");
+                column: "patientID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Diagnose_patientID",
+                table: "Diagnose",
+                column: "patientID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Doctors_departmentID",
                 table: "Doctors",
-                column: "DepartmentID");
+                column: "departmentID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Patient_departmentID",
                 table: "Patient",
-                column: "DepartmentID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Patient_diagnoseID",
-                table: "Patient",
-                column: "DiagnoseID");
+                column: "departmentID");
         }
 
         /// <inheritdoc />
@@ -169,6 +166,9 @@ namespace Klinika.API.Data.Migrations
                 name: "Appointments");
 
             migrationBuilder.DropTable(
+                name: "Diagnose");
+
+            migrationBuilder.DropTable(
                 name: "Doctors");
 
             migrationBuilder.DropTable(
@@ -176,9 +176,6 @@ namespace Klinika.API.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Departments");
-
-            migrationBuilder.DropTable(
-                name: "Diagnose");
         }
     }
 }

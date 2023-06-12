@@ -5,15 +5,13 @@ namespace Klinika.API.Models
 	public class Doctor
 	{
 		[Key]
-		public int DoctorID { get; set; }
+		public int doctorID { get; set; }
 		public string name { get; set; } = string.Empty;
 		public string lastname { get; set; } = string.Empty;
 		public string specialization { get; set; } = string.Empty;
-		public int DepartmentID { get; set; }
-		public required Department Department { get; set; }
-
-		
-
+		public int departmentID { get; set; }
+		public Department Department { get; set; }
+	
 	}
 
 }

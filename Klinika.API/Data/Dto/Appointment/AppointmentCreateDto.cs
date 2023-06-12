@@ -1,15 +1,17 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Klinika.API.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace Klinika.API.Data.Dto.Appointment
 {
 	public class AppointmentCreateDto
 	{
 		[Required]
-		public DateTime appointed_time { get; set; }
+		public DateTime appointmentDate { get; set; }
 		[Required]
-		public int PatientID { get; set; }
+		public int patientID { get; set; }
 		[Required]
-		public int DoctorID { get; set; }
+		public int doctorID { get; set; }
+		public AppointmentStatus status { get; set; } = AppointmentStatus.Pending;
 
 	}
 }

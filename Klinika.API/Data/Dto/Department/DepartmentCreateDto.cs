@@ -6,8 +6,7 @@ namespace Klinika.API.Data.Dto.Department
 	{
 		[Required]
 		public string name { get; set; }
-		[Required]
-		public string description { get; set; }
+		
 	}
 }
 

@@ -6,7 +6,8 @@ namespace Klinika.API.Contracts.Repositories
     {
         Task<IEnumerable<Appointment>> GetAllAppointments();
         Task<Appointment> GetAppointmentById(int appointmentId);
-        void CreateAppointment(Appointment appointment);
+		Task<IEnumerable<Appointment>> GetAppointmentByDoctorId(int doctorId);
+		void CreateAppointment(Appointment appointment);
         void UpdateAppointment(Appointment appointment);
         void DeleteAppointment(Appointment appointment);
     }

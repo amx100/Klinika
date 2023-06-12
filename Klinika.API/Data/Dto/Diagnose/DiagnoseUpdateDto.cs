@@ -2,9 +2,8 @@
 {
 	public class DiagnoseUpdateDto
 	{
-		public int DiagnoseID { get; set; }
+		public int diagnoseID { get; set; }
 		public string name { get; set; }
-
-		public string description { get; set; }
+		public int? patientID { get; set; }
 	}
 }

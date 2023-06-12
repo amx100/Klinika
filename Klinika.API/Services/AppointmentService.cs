@@ -4,6 +4,8 @@ using Klinika.API.Data.Dto.Appointment;
 using Klinika.API.Data.Dto;
 using Klinika.API.Models;
 using Mapster;
+using Klinika.API.Repositories;
+using Klinika.API.Data.Dto.Patient;
 
 namespace Klinika.API.Services
 {
@@ -83,6 +85,13 @@ namespace Klinika.API.Services
 		{
 			var appointment = await _repositoryManager.AppointmentRepository.GetAppointmentById(appointmentId);
 			return appointment.Adapt<AppointmentReadOnlyDto>();
+		}
+
+		public async Task<IEnumerable<PatientReadOnlyDto>> GetPatientsByDoctorId(int doctorId)
+		{
+			var appointments = await  _repositoryManager.AppointmentRepository.GetAppointmentByDoctorId(doctorId);
+			var patients = appointments.Select(patient => patient.Patient).ToList();
+			return patients.Adapt<IEnumerable<PatientReadOnlyDto>>();
 		}
 	}
 }

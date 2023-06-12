@@ -13,6 +13,6 @@ namespace Klinika.API.Data.Dto.Doctor
         public string specialization { get; set; }
      
         [Required]
-		public int DepartmentID { get; set; }
+		public int departmentID { get; set; }
 	}
 }
