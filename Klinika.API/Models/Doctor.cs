@@ -9,6 +9,7 @@ namespace Klinika.API.Models
 		public string name { get; set; } = string.Empty;
 		public string lastname { get; set; } = string.Empty;
 		public string specialization { get; set; } = string.Empty;
+		public DateTime date_of_birth { get; set; }
 		public int departmentID { get; set; }
 		public Department Department { get; set; }
 	

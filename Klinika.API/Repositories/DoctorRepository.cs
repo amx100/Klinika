@@ -16,16 +16,12 @@ namespace Application.Repositories
 
 		public async Task<IEnumerable<Doctor>> GetAllDoctors()
 		{
-			return await SelectAll()
-				.Include(d => d.Department)
-				.ToListAsync();
+			return await SelectAll().Include(d => d.Department).ToListAsync();
 		}
 
 		public async Task<Doctor> GetDoctorById(int doctorId)
 		{
-			return await SelectByCondition(d => d.doctorID == doctorId)
-				.Include(d => d.Department)
-				.FirstOrDefaultAsync();
+			return await SelectByCondition(d => d.doctorID == doctorId).Include(d => d.Department).FirstOrDefaultAsync();
 		}
 	}
 

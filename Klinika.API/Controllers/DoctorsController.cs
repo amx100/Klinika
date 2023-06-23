@@ -37,7 +37,7 @@ namespace Klinika.API.Controllers
 			var response = await _serviceManager.AppointmentService.GetPatientsByDoctorId(doctorId);
 			if (response is not null)
 				return Ok(response);
-			return NotFound("Doctor not found.");
+			return NotFound("Patient not found.");
 		}
 
 		[HttpPost]

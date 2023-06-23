@@ -13,20 +13,12 @@ namespace Klinika.API.Repositories
         public void DeletePatient(Patient patient) => Delete(patient);
 		public async Task<IEnumerable<Patient>> GetAllPatients()
 		{
-			return await SelectAll()
-				.Include(p => p.Department)
-				.Include(p => p.Appointments)
-				.ThenInclude(a => a.Doctor)
-				.ToListAsync();
+			return await SelectAll().ToListAsync();
 		}
 
 		public async Task<Patient> GetPatientById(int patientId)
 		{
-			return await SelectByCondition(p => p.patientID == patientId)
-				.Include(p => p.Department)
-				.Include(p => p.Appointments)
-				.ThenInclude(a => a.Doctor)
-				.FirstOrDefaultAsync();
+			return await SelectByCondition(p => p.patientID == patientId).FirstOrDefaultAsync();
 		}
 
 

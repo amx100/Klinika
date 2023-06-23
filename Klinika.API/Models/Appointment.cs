@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
+
 
 namespace Klinika.API.Models
 {
@@ -11,8 +13,8 @@ namespace Klinika.API.Models
 		public int doctorID { get; set; }
 		public Doctor Doctor { get; set; }
 		public DateTime appointmentDate { get; set; }
-		public AppointmentStatus status { get; set; } 
-		
+		public decimal price { get; set; }
+		public AppointmentStatus status { get; set; }
 	}
 
 	public enum AppointmentStatus

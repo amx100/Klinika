@@ -9,7 +9,6 @@ namespace Klinika.API.Contracts.Service
 		Task<IEnumerable<PatientReadOnlyDto>> GetPatientsByDoctorId(int doctorId);
 		Task<IEnumerable<AppointmentReadOnlyDto>> GetAllAppointments();
 		Task<AppointmentReadOnlyDto> GetAppointmentById(int appointmentId);
-		
 		Task<ResponseDto> CreateAppointment(AppointmentCreateDto appointmentDto);
 		Task<ResponseDto> UpdateAppointment(int appointmentId, AppointmentUpdateDto appointmentDto);
 		Task<bool> DeleteAppointment(int appointmentId);

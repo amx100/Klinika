@@ -34,6 +34,12 @@ namespace Klinika.API.Data.Migrations
                     b.Property<int>("patientID")
                         .HasColumnType("int");
 
+                    b.Property<decimal>("price")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<int>("status")
+                        .HasColumnType("int");
+
                     b.HasKey("appointmentID");
 
                     b.HasIndex("doctorID");
@@ -88,6 +94,9 @@ namespace Klinika.API.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("date_of_birth")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<int>("departmentID")
                         .HasColumnType("int");
 
@@ -119,9 +128,6 @@ namespace Klinika.API.Data.Migrations
                     b.Property<DateTime>("date_of_birth")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int>("departmentID")
-                        .HasColumnType("int");
-
                     b.Property<string>("lastname")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -132,21 +138,19 @@ namespace Klinika.API.Data.Migrations
 
                     b.HasKey("patientID");
 
-                    b.HasIndex("departmentID");
-
                     b.ToTable("Patient");
                 });
 
             modelBuilder.Entity("Klinika.API.Models.Appointment", b =>
                 {
                     b.HasOne("Klinika.API.Models.Doctor", "Doctor")
-                        .WithMany("Appointments")
+                        .WithMany()
                         .HasForeignKey("doctorID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Klinika.API.Models.Patient", "Patient")
-                        .WithMany("Appointments")
+                        .WithMany()
                         .HasForeignKey("patientID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -159,7 +163,7 @@ namespace Klinika.API.Data.Migrations
             modelBuilder.Entity("Klinika.API.Models.Diagnose", b =>
                 {
                     b.HasOne("Klinika.API.Models.Patient", "Patient")
-                        .WithMany("Diagnoses")
+                        .WithMany()
                         .HasForeignKey("patientID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -176,34 +180,6 @@ namespace Klinika.API.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Department");
-                });
-
-            modelBuilder.Entity("Klinika.API.Models.Patient", b =>
-                {
-                    b.HasOne("Klinika.API.Models.Department", "Department")
-                        .WithMany("Patients")
-                        .HasForeignKey("departmentID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Department");
-                });
-
-            modelBuilder.Entity("Klinika.API.Models.Department", b =>
-                {
-                    b.Navigation("Patients");
-                });
-
-            modelBuilder.Entity("Klinika.API.Models.Doctor", b =>
-                {
-                    b.Navigation("Appointments");
-                });
-
-            modelBuilder.Entity("Klinika.API.Models.Patient", b =>
-                {
-                    b.Navigation("Appointments");
-
-                    b.Navigation("Diagnoses");
                 });
 #pragma warning restore 612, 618
         }

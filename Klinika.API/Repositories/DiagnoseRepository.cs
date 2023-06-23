@@ -12,7 +12,7 @@ namespace Klinika.API.Repositories
         public void UpdateDiagnose(Diagnose diagnose) => Update(diagnose);
         public void DeleteDiagnose(Diagnose diagnose) => Delete(diagnose);
 		public async Task<IEnumerable<Diagnose>> GetAllDiagnoses() => await SelectAll().Include(pat => pat.Patient).ToListAsync();
-		public async Task<Diagnose> GetDiagnoseById(int diagnoseId) => await SelectByCondition(diagnose => diagnose.diagnoseID == diagnoseId).FirstOrDefaultAsync();
+		public async Task<Diagnose> GetDiagnoseById(int diagnoseId) => await SelectByCondition(diagnose => diagnose.diagnoseID == diagnoseId).Include(pat => pat.Patient).FirstOrDefaultAsync();
         
 
        
