@@ -6,7 +6,5 @@
 		public string name { get; set; }
 		public string lastname { get; set; }
 		public DateTime date_of_birth { get; set; }
-		public int diagnoseID { get; set; }
-		public int departmentID { get; set; }
 	}
 }

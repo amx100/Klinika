@@ -14,7 +14,6 @@ namespace Klinika.API.Data
         public DbSet<Department> Departments { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
         protected ApplicationDbContext() { }
-
-    }
+	}
 
 }

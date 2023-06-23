@@ -15,15 +15,11 @@ namespace Klinika.API.Repositories
 		{
 			return await SelectAll()
 				.Include(a => a.Patient)
-				.ThenInclude(dia => dia.Department)
-				.Include(a => a.Doctor)
-				.ThenInclude(dia => dia.Department)
+				.Include(a => a.Doctor.Department )
 				.ToListAsync();
 		}
-
-		public async Task<Appointment> GetAppointmentById(int appointmentId) => await SelectByCondition(appointment => appointment.appointmentID == appointmentId).FirstOrDefaultAsync();
-
-		public async Task<IEnumerable<Appointment>> GetAppointmentByDoctorId(int doctorId) => await SelectByCondition(appointment => appointment.doctorID == doctorId).Include(patient => patient.Patient).Include(doctor => doctor.Doctor).ToListAsync();
+		public async Task<Appointment> GetAppointmentById(int appointmentId) => await SelectByCondition(appointment => appointment.appointmentID == appointmentId).Include(a => a.Patient).Include(a => a.Doctor.Department).FirstOrDefaultAsync();
+		public async Task<IEnumerable<Appointment>> GetAppointmentByDoctorId(int doctorId) => await SelectByCondition(appointment => appointment.doctorID == doctorId).Include(patient => patient.Patient).Include(doctor => doctor.Doctor.Department).ToListAsync();
 		
 	}
 }

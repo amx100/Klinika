@@ -11,8 +11,9 @@ namespace Klinika.API.Data.Dto.Doctor
         public string lastname { get; set; }
         [Required]
         public string specialization { get; set; }
-     
-        [Required]
+		[Required]
+		public DateTime date_of_birth { get; set; }
+		[Required]
 		public int departmentID { get; set; }
 	}
 }

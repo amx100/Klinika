@@ -7,6 +7,5 @@ namespace Klinika.API.Models
 		[Key]
 		public int departmentID { get; set; }
 		public string name { get; set; } = string.Empty;
-		
 	}
 }
